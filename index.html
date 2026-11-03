@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0b132b">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="星空下的十八岁生日祝福：芋泥紫奶油蛋糕、小松鼠、吹蜡烛许愿与生日歌">
+<!-- 生日蛋糕 Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIwIiBmaWxsPSIjMWMyNTQxIi8+PHJlY3QgeD0iMjAiIHk9IjU1IiB3aWR0aD0iNjAiIGhlaWdodD0iMzAiIHJ4PSI2IiBmaWxsPSIjZDJiZWRmIi8+PHBhdGggZD0iTTIwIDU1IFEgMzAgNjUgNDAgNTUgUSA1MCA2NSA2MCA1NSBRIDcwIDY1IDgwIDU1IEwgODAgNDUgUSA3MCA1NSA2MCA0NSBRIDUwIDU1IDQwIDQ1IFEgMzAgNTUgMjAgNDUgWiIgZmlsbD0iI2ZmZmZmZiIvPjxyZWN0IHg9IjQ1IiB5PSIyNSIgd2lkdGg9IjEwIiBoZWlnaHQ9IjI1IiBmaWxsPSIjZjVkNzZlIi8+PHBhdGggZD0iTTUwIDE1IFEgNTUgMjAgNTAgMjUgUSA0NSAyMCA1MCAxNSBaIiBmaWxsPSIjZmY3YTJmIi8+PHRleHQgeD0iNTAiIHk9Ijc4IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjNGEzMDEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xODwvdGV4dD48L3N2Zz4=">
+<title>Happy 18th Birthday</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; }
+
+  :root {
+    --gold: #f3d27a;
+    --gold-deep: #d4a247;
+    --cream: #ffeec2;
+    --font-display: "Cormorant Garamond", "Songti SC", "STSong", Georgia, serif;
+    --font-ui: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-mono: "DM Mono", "SFMono-Regular", Consolas, monospace;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px 50px;
+    /* 梵高星空背景底色 */
+    background:
+      radial-gradient(circle at 15% 20%, rgba(30, 50, 100, 0.6) 0%, transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(50, 20, 80, 0.5) 0%, transparent 45%),
+      radial-gradient(circle at 50% 80%, rgba(20, 60, 90, 0.6) 0%, transparent 50%),
+      radial-gradient(circle at 80% 90%, rgba(180, 150, 50, 0.15) 0%, transparent 40%),
+      linear-gradient(135deg, #0b132b, #1c2541, #0b132b);
+    font-family: var(--font-ui);
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* 梵高式星云漩涡 */
+  .vortex {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(20px);
+    opacity: 0.4;
+    z-index: 0;
+    pointer-events: none;
+    animation: rotate 40s linear infinite;
+  }
+  .vortex-1 {
+    width: 400px; height: 400px;
+    top: -100px; left: -100px;
+    background: conic-gradient(from 0deg, transparent, #3a5a90, transparent, #1e3a6e, transparent);
+  }
+  .vortex-2 {
+    width: 600px; height: 600px;
+    bottom: -200px; right: -150px;
+    background: conic-gradient(from 180deg, transparent, #2c3e6b, transparent, #4a6fa5, transparent);
+    animation-direction: reverse;
+    animation-duration: 50s;
+  }
+  @keyframes rotate {
+    100% { transform: rotate(360deg); }
+  }
+
+  /* ============ 星空背景 ============ */
+  #stars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  #stars i {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  #stars i.gold {
+    background: var(--gold);
+    box-shadow: 0 0 12px 3px rgba(245, 215, 110, 0.8);
+  }
+  #stars i.blue {
+    background: #a3c4e8;
+    box-shadow: 0 0 8px 2px rgba(163, 196, 232, 0.6);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: .2; transform: scale(.8); }
+    50%      { opacity: .95; transform: scale(1.2); }
+  }
+
+  /* ============ 主舞台 ============ */
+  .stage {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 520px;
+  }
+
+  /* 入场动效：错落浮现 */
+  .stage > * { opacity: 0; animation: rise .9s cubic-bezier(.22, .7, .26, 1) both; }
+  .stage > *:nth-child(1) { animation-delay: .05s; }
+  .stage > *:nth-child(2) { animation-delay: .15s; }
+  .stage > *:nth-child(3) { animation-delay: .25s; }
+  .stage > *:nth-child(4) { animation-delay: .35s; }
+  .stage > *:nth-child(5) { animation-delay: .55s; }
+  .stage > *:nth-child(6) { animation-delay: .7s; }
+  .stage > *:nth-child(7) { animation-delay: .8s; }
+  .stage > *:nth-child(8) { animation-delay: .9s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(11px, 3.1vw, 14px);
+    letter-spacing: .42em;
+    text-indent: .42em;
+    text-transform: uppercase;
+    color: #e8c98a;
+    opacity: .9;
+  }
+  .eyebrow sup {
+    font-size: .58em;
+    vertical-align: super;
+    letter-spacing: 0;
+  }
+
+  .name {
+    margin-top: 10px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(26px, 7.6vw, 42px);
+    letter-spacing: .07em;
+    background: linear-gradient(180deg, #fffdf2 0%, #f7dc9a 42%, #d4a247 74%, #ffeec2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 14px rgba(247, 220, 154, .35));
+  }
+  .name .hl { font-weight: 600; }
+
+  .subline {
+    margin-top: 10px;
+    font-size: clamp(12px, 3.4vw, 14px);
+    letter-spacing: .16em;
+    color: rgba(255, 240, 220, .62);
+  }
+
+  /* ============ 蛋糕 ============ */
+  .cake-wrap {
+    position: relative;
+    margin-top: 6px;
+  }
+  .cake-wrap::before {
+    content: "";
+    position: absolute;
+    inset: -10% -14%;
+    background: radial-gradient(circle at 50% 58%, rgba(220, 190, 240, .25), rgba(220, 190, 240, 0) 68%);
+    filter: blur(26px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .cake {
+    display: block;
+    width: min(360px, 85vw);
+    height: auto;
+    filter: drop-shadow(0 24px 44px rgba(20, 20, 40, .8));
+    animation: floaty 7s ease-in-out infinite;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+
+  /* 火焰跳动与熄灭效果 */
+  .flame {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: flicker 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 196, 100, 0.9)) drop-shadow(0 0 16px rgba(255, 140, 50, 0.6));
+    transition: opacity .4s ease;
+  }
+  .flame-delay { animation-delay: .7s; }
+  .flame.out {
+    animation: none;
+    opacity: 0;
+    filter: none;
+  }
+  @keyframes flicker {
+    0%, 100% { transform: scale(1) rotate(-2deg); }
+    30%      { transform: scale(1.06, .94) rotate(2deg); }
+    62%      { transform: scale(.95, 1.05) rotate(-1deg); }
+  }
+
+  /* ============ 祝福卡片 ============ */
+  .wish-card {
+    margin-top: 14px;
+    max-width: 440px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(243, 210, 122, .18);
+    font-size: clamp(12px, 3.5vw, 14.5px);
+    line-height: 2.15;
+    letter-spacing: .06em;
+    color: rgba(255, 240, 225, .74);
+  }
+  .wish-card p + p { margin-top: 2px; }
+  .wish-card .accent {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* ============ 按钮 ============ */
+  .actions { margin-top: 20px; }
+
+  .btn {
+    padding: 12px 32px;
+    border-radius: 999px;
+    border: 1px solid rgba(243, 210, 122, .5);
+    background: linear-gradient(180deg, rgba(243, 210, 122, .22), rgba(243, 210, 122, .05));
+    color: var(--cream);
+    font-family: inherit;
+    font-size: 14.5px;
+    letter-spacing: .12em;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    transition: transform .3s ease, box-shadow .3s ease, background .3s ease, letter-spacing .35s ease;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    letter-spacing: .2em;
+    background: linear-gradient(180deg, rgba(243, 210, 122, .4), rgba(243, 210, 122, .12));
+    box-shadow: 0 0 26px rgba(243, 210, 122, .32);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible, .p-btn:focus-visible, input[type="range"]:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  /* ============ 音乐播放器 ============ */
+  .player {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+    border: 1px solid rgba(243, 210, 122, .22);
+    background: rgba(11, 19, 43, .6);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 34px rgba(0, 0, 0, .34);
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .player-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .p-btn {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(150deg, #f7dc9a, var(--gold-deep));
+    box-shadow: 0 4px 16px rgba(212, 162, 71, .42);
+    touch-action: manipulation;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .p-btn:hover { transform: scale(1.06); box-shadow: 0 6px 22px rgba(212, 162, 71, .6); }
+  .p-btn:active { transform: scale(.97); }
+  .p-btn svg { width: 18px; height: 18px; fill: #3a2410; }
+  .p-btn .ic-pause { display: none; }
+  .p-btn.playing .ic-play { display: none; }
+  .p-btn.playing .ic-pause { display: block; }
+
+  .p-info {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: left;
+  }
+  .p-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: .04em;
+    color: var(--cream);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .p-sub {
+    margin-top: 3px;
+    font-size: 11px;
+    letter-spacing: .06em;
+    color: rgba(255, 240, 220, .45);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .vol {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .vol svg { width: 16px; height: 16px; fill: rgba(255, 240, 220, .55); }
+
+  /* ============ 进度条 ============ */
+  .progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .time-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: rgba(255, 240, 220, .5);
+    min-width: 30px;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    touch-action: manipulation;
+    background: linear-gradient(
+      to right,
+      var(--gold) 0%,
+      var(--gold) var(--v, 0%),
+      rgba(255, 255, 255, .16) var(--v, 0%),
+      rgba(255, 255, 255, .16) 100%
+    );
+  }
+  input[type="range"]::-moz-range-track {
+    height: 4px;
+    border-radius: 4px;
+    background: transparent;
+  }
+
+  #volRange { width: 56px; }
+  #progressBar { flex: 1; }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff6d8;
+    box-shadow: 0 0 8px rgba(243, 210, 122, .8);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: #fff6d8;
+    box-shadow: 0 0 8px rgba(243, 210, 122, .8);
+  }
+
+  .hint {
+    margin-top: 12px;
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: rgba(255, 240, 220, .38);
+    min-height: 14px;
+  }
+
+  /* ============ 彩带 ============ */
+  .confetti {
+    position: fixed;
+    top: -8vh;
+    z-index: 999;
+    pointer-events: none;
+    animation: confettiFall linear forwards;
+  }
+  @keyframes confettiFall {
+    0%   { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
+    8%   { opacity: 1; }
+    100% { transform: translate3d(var(--x), 108vh, 0) rotate(760deg); opacity: 0; }
+  }
+
+  /* ============ 手机竖屏适配 ============ */
+  @media (max-width: 480px) {
+    body { padding: 30px 16px 40px; }
+    .name { font-size: clamp(24px, 7vw, 32px); }
+    .cake { width: min(320px, 90vw); }
+    .wish-card {
+      margin-top: 10px;
+      padding-top: 14px;
+      line-height: 2;
+      font-size: clamp(11.5px, 3.5vw, 13px);
+    }
+    .player { padding: 10px 12px; gap: 10px; max-width: 100%; }
+    .vol { gap: 4px; }
+    #volRange { width: 48px; }
+    .p-sub { font-size: 10px; }
+    .time-label { font-size: 10px; min-width: 26px; }
+  }
+
+  /* 尊重系统「减弱动态效果」设置 */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- 梵高式星云漩涡 -->
+<div class="vortex vortex-1"></div>
+<div class="vortex vortex-2"></div>
+<div id="stars"></div>
+
+<main class="stage">
+
+  <p class="eyebrow">Happy 18<sup>th</sup> Birthday</p>
+  <h1 class="name">致 <span class="hl">Czy同学</span></h1>
+  <p class="subline">愿你的十八岁，如星空般璀璨</p>
+
+  <!-- ==================== 蛋糕 ==================== -->
+  <div class="cake-wrap">
+    <svg class="cake" viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="十八岁芋泥紫奶油生日蛋糕">
+      <defs>
+        <linearGradient id="taroSide1" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#a889bd"/>
+          <stop offset="20%"  stop-color="#d2bedf"/>
+          <stop offset="50%"  stop-color="#e8dcee"/>
+          <stop offset="80%"  stop-color="#cbb3da"/>
+          <stop offset="100%" stop-color="#9f7eb3"/>
+        </linearGradient>
+        <linearGradient id="taroSide2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#b394c4"/>
+          <stop offset="20%"  stop-color="#dccbe5"/>
+          <stop offset="50%"  stop-color="#f0e6f4"/>
+          <stop offset="80%"  stop-color="#d5c0e1"/>
+          <stop offset="100%" stop-color="#a88bbd"/>
+        </linearGradient>
+        <linearGradient id="taroSide3" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#c2a5d4"/>
+          <stop offset="20%"  stop-color="#e5d7ec"/>
+          <stop offset="50%"  stop-color="#f8f3fa"/>
+          <stop offset="80%"  stop-color="#dfd0e8"/>
+          <stop offset="100%" stop-color="#b698c9"/>
+        </linearGradient>
+        <radialGradient id="taroTop" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#f8f3fa"/>
+          <stop offset="60%"  stop-color="#e2d4eb"/>
+          <stop offset="100%" stop-color="#cdb6db"/>
+        </radialGradient>
+        <linearGradient id="cream" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#ffffff"/>
+          <stop offset="40%"  stop-color="#fdfcf8"/>
+          <stop offset="100%" stop-color="#f0ebdf"/>
+        </linearGradient>
+        <linearGradient id="cubePurple" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stop-color="#d1bce0"/>
+          <stop offset="100%" stop-color="#b89bca"/>
+        </linearGradient>
+        <linearGradient id="cubeOrange" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stop-color="#fde4a6"/>
+          <stop offset="100%" stop-color="#f2c078"/>
+        </linearGradient>
+        <linearGradient id="candleGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#f5d98a"/>
+          <stop offset="40%"  stop-color="#fff6cf"/>
+          <stop offset="100%" stop-color="#e0b354"/>
+        </linearGradient>
+        <linearGradient id="flameG" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%"   stop-color="#fff8d0"/>
+          <stop offset="45%"  stop-color="#ffc93c"/>
+          <stop offset="100%" stop-color="#ff7a2f"/>
+        </linearGradient>
+        <linearGradient id="goldSign" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stop-color="#fef3c7"/>
+          <stop offset="40%"  stop-color="#f7dc9a"/>
+          <stop offset="70%"  stop-color="#d4a247"/>
+          <stop offset="100%" stop-color="#b2842d"/>
+        </linearGradient>
+        <linearGradient id="plate" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#a894b5" stop-opacity=".1"/>
+          <stop offset="50%"  stop-color="#fff4fa" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#a894b5" stop-opacity=".1"/>
+        </linearGradient>
+        <radialGradient id="glow">
+          <stop offset="0%"   stop-color="#e6d3f2" stop-opacity=".25"/>
+          <stop offset="100%" stop-color="#e6d3f2" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="blurSoft" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4"/>
+        </filter>
+        <filter id="blurBig" x="-50%" y="-100%" width="200%" height="300%">
+          <feGaussianBlur stdDeviation="8"/>
+        </filter>
+      </defs>
+
+      <ellipse cx="200" cy="320" rx="195" ry="130" fill="url(#glow)"/>
+
+      <!-- 盘子与投影 -->
+      <ellipse cx="200" cy="390" rx="145" ry="25" fill="#1a0b22" opacity=".6" filter="url(#blurBig)"/>
+      <ellipse cx="200" cy="385" rx="165" ry="22" fill="url(#plate)"/>
+      <ellipse cx="200" cy="383" rx="150" ry="14" fill="#ffffff" opacity=".15"/>
+
+      <!-- 底层 -->
+      <path d="M 60 280 L 60 365 Q 200 395 340 365 L 340 280 Z" fill="url(#taroSide1)"/>
+      <path d="M 60 295 Q 200 325 340 295" fill="none" stroke="#ffffff" stroke-width="4" opacity=".1"/>
+      <path d="M 60 330 Q 200 360 340 330" fill="none" stroke="#ffffff" stroke-width="3" opacity=".08"/>
+      <ellipse cx="200" cy="280" rx="140" ry="35" fill="url(#taroTop)"/>
+      <ellipse cx="200" cy="280" rx="140" ry="35" fill="none" stroke="#ffffff" stroke-width="2" opacity=".5"/>
+
+      <!-- 中层 -->
+      <ellipse cx="200" cy="280" rx="112" ry="28" fill="#a889bd" opacity=".3"/>
+      <path d="M 88 190 L 88 265 Q 200 295 312 265 L 312 190 Z" fill="url(#taroSide2)"/>
+      <path d="M 88 220 Q 200 250 312 220" fill="none" stroke="#ffffff" stroke-width="3" opacity=".1"/>
+      <ellipse cx="200" cy="190" rx="112" ry="28" fill="url(#taroTop)"/>
+      <ellipse cx="200" cy="190" rx="112" ry="28" fill="none" stroke="#ffffff" stroke-width="2" opacity=".6"/>
+
+      <!-- 顶层 -->
+      <ellipse cx="200" cy="190" rx="85" ry="22" fill="#a889bd" opacity=".3"/>
+      <path d="M 115 100 L 115 175 Q 200 200 285 175 L 285 100 Z" fill="url(#taroSide3)"/>
+      <ellipse cx="200" cy="100" rx="85" ry="22" fill="url(#taroTop)"/>
+      <ellipse cx="200" cy="100" rx="85" ry="22" fill="none" stroke="#ffffff" stroke-width="2.5" opacity=".7"/>
+
+      <!-- 奶油装饰 -->
+      <g transform="translate(200, 96)">
+        <path d="M -65 5 Q -40 -15 -15 -5 Q 10 -20 35 -5 Q 60 -15 65 5 Q 40 15 15 10 Q -10 15 -40 10 Z" fill="#b89bca" opacity=".4" filter="url(#blurSoft)"/>
+        <path d="M -70 0 C -55 -20, -30 -20, -10 -5 C 10 -25, 40 -20, 50 0 C 70 -10, 75 15, 60 20 C 40 30, 15 20, -5 15 C -30 25, -60 20, -70 0 Z" fill="url(#cream)"/>
+        <path d="M -55 -2 Q -35 -15 -15 -2 Q 5 -15 25 -2 Q 40 -12 55 0" fill="none" stroke="#f0ebdf" stroke-width="3" stroke-linecap="round"/>
+        <path d="M -50 8 Q -25 18 0 8 Q 25 20 45 8" fill="none" stroke="#f0ebdf" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M -50 -10 Q -30 -20 -10 -8" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+        <path d="M 10 -15 Q 25 -22 40 -5" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+      </g>
+
+      <!-- 水果块 -->
+      <g transform="translate(135, 115) rotate(-20)">
+        <rect x="-16" y="-14" width="32" height="28" rx="3" fill="url(#cubePurple)"/>
+        <rect x="-16" y="-14" width="32" height="7" rx="3" fill="#ffffff" opacity=".2"/>
+        <path d="M -16 -7 L -16 14 L 16 14 L 16 -7 Z" fill="#000000" opacity=".08"/>
+      </g>
+      <g transform="translate(260, 85) rotate(15)">
+        <rect x="-18" y="-16" width="36" height="32" rx="4" fill="url(#cubePurple)"/>
+        <rect x="-18" y="-16" width="36" height="8" rx="4" fill="#ffffff" opacity=".25"/>
+        <path d="M -18 -8 L -18 16 L 18 16 L 18 -8 Z" fill="#000000" opacity=".05"/>
+      </g>
+      <g transform="translate(128, 88) rotate(-30)">
+        <rect x="-12" y="-10" width="24" height="20" rx="3" fill="url(#cubeOrange)"/>
+        <rect x="-12" y="-10" width="24" height="5" rx="3" fill="#ffffff" opacity=".3"/>
+        <path d="M -12 -5 L -12 10 L 12 10 L 12 -5 Z" fill="#000000" opacity=".05"/>
+      </g>
+      <g transform="translate(125, 130) rotate(45)">
+        <rect x="-10" y="-8" width="20" height="16" rx="2" fill="url(#cubeOrange)"/>
+        <rect x="-10" y="-8" width="20" height="4" rx="2" fill="#ffffff" opacity=".25"/>
+      </g>
+      <g transform="translate(280, 110) rotate(10)">
+        <rect x="-14" y="-12" width="28" height="24" rx="3" fill="url(#cubeOrange)"/>
+        <rect x="-14" y="-12" width="28" height="6" rx="3" fill="#ffffff" opacity=".3"/>
+        <path d="M -14 -6 L -14 12 L 14 12 L 14 -6 Z" fill="#000000" opacity=".05"/>
+      </g>
+      <g transform="translate(180, 84) rotate(-10)">
+        <rect x="-9" y="-7" width="18" height="14" rx="2" fill="url(#cubeOrange)"/>
+        <rect x="-9" y="-7" width="18" height="3.5" rx="2" fill="#ffffff" opacity=".3"/>
+      </g>
+
+      <!-- 松鼠翻糖 (定制装饰) -->
+      <g transform="translate(270, 130)">
+        <path d="M 15 10 C 45 -20, 65 20, 35 40 C 25 45, 15 35, 20 25 C 25 15, 30 10, 15 10 Z" fill="#a0522d"/>
+        <path d="M 18 12 C 40 -10, 55 20, 32 35 C 25 38, 18 30, 22 22 C 25 15, 28 12, 18 12 Z" fill="#cd853f"/>
+        <ellipse cx="0" cy="25" rx="14" ry="16" fill="#d2691e"/>
+        <ellipse cx="0" cy="28" rx="10" ry="12" fill="#f5deb3"/>
+        <circle cx="-5" cy="8" r="10" fill="#d2691e"/>
+        <ellipse cx="-10" cy="-1" rx="4" ry="6" fill="#d2691e" transform="rotate(-20 -10 -1)"/>
+        <ellipse cx="-10" cy="-1" rx="2" ry="3" fill="#f5deb3" transform="rotate(-20 -10 -1)"/>
+        <ellipse cx="0" cy="-2" rx="4" ry="6" fill="#d2691e" transform="rotate(20 0 -2)"/>
+        <ellipse cx="0" cy="-2" rx="2" ry="3" fill="#f5deb3" transform="rotate(20 0 -2)"/>
+        <circle cx="-8" cy="6" r="1.5" fill="#000"/>
+        <circle cx="-2" cy="6" r="1.5" fill="#000"/>
+        <circle cx="-5" cy="10" r="2" fill="#000"/>
+        <circle cx="0" cy="23" r="13" fill="#f5d76e" opacity=".16"/>
+        <path d="M 0 15 L 3 21 L 9 21 L 4 25 L 6 31 L 0 27 L -6 31 L -4 25 L -9 21 L -3 21 Z" fill="#f5d76e"/>
+      </g>
+
+      <!-- 左侧蜡烛 -->
+      <g transform="translate(145, 75)">
+        <rect x="-5" y="0" width="10" height="30" rx="2" fill="url(#candleGrad)"/>
+        <path d="M -5 8 Q 0 12 5 8" fill="none" stroke="#d4a247" stroke-width="1.2" opacity=".6"/>
+        <path d="M -5 16 Q 0 20 5 16" fill="none" stroke="#d4a247" stroke-width="1.2" opacity=".6"/>
+        <path d="M -5 24 Q 0 28 5 24" fill="none" stroke="#d4a247" stroke-width="1.2" opacity=".6"/>
+        <line x1="0" y1="0" x2="0" y2="-5" stroke="#333" stroke-width="1.5"/>
+        <g class="flame flame-group">
+          <ellipse cx="0" cy="-12" rx="5" ry="9" fill="url(#flameG)"/>
+          <ellipse cx="0" cy="-9" rx="2" ry="4" fill="#fffbe0"/>
+        </g>
+      </g>
+
+      <!-- 右侧蜡烛 -->
+      <g transform="translate(255, 75)">
+        <rect x="-5" y="0" width="10" height="30" rx="2" fill="url(#candleGrad)"/>
+        <path d="M -5 8 Q 0 12 5 8" fill="none" stroke="#d4a247" stroke-width="1.2" opacity=".6"/>
+        <path d="M -5 16 Q 0 20 5 16" fill="none" stroke="#d4a247" stroke-width="1.2" opacity=".6"/>
+        <path d="M -5 24 Q 0 28 5 24" fill="none" stroke="#d4a247" stroke-width="1.2" opacity=".6"/>
+        <line x1="0" y1="0" x2="0" y2="-5" stroke="#333" stroke-width="1.5"/>
+        <g class="flame flame-group flame-delay">
+          <ellipse cx="0" cy="-12" rx="5" ry="9" fill="url(#flameG)"/>
+          <ellipse cx="0" cy="-9" rx="2" ry="4" fill="#fffbe0"/>
+        </g>
+      </g>
+
+      <!-- 中间 18岁金色插牌 -->
+      <g transform="translate(200, 50)">
+        <rect x="-2" y="20" width="4" height="40" fill="#d4a247"/>
+        <rect x="-2" y="20" width="1.5" height="40" fill="#fef3c7" opacity=".6"/>
+        <rect x="-26" y="-26" width="52" height="46" rx="5" fill="url(#goldSign)"/>
+        <rect x="-23" y="-23" width="46" height="40" rx="3" fill="none" stroke="#fffdf2" stroke-width="1.2" opacity=".8"/>
+        <rect x="-20" y="-20" width="40" height="34" rx="2" fill="none" stroke="#d4a247" stroke-width="0.8" opacity=".5"/>
+        <text x="2" y="7" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="28" font-weight="600" letter-spacing="2" fill="#4a3010">18</text>
+      </g>
+
+    </svg>
+  </div>
+
+  <!-- ==================== 祝福 ==================== -->
+  <div class="wish-card">
+    <p>十八岁，承担着更多责任的同时也收获了无限的可能。</p>
+    <p>愿你眼里有光，心中有热爱，脚下有远方。</p>
+    <p class="accent">生日快乐，愿所有的美好都恰好与你相遇 🎉</p>
+  </div>
+
+  <div class="actions">
+    <button class="btn" id="wishBtn" aria-pressed="false">✨ 吹蜡烛许愿</button>
+  </div>
+
+  <p class="hint" id="hint"></p>
+
+  <!-- ==================== 音乐播放器 ==================== -->
+  <div class="player">
+    <div class="player-top">
+      <button class="p-btn" id="playBtn" aria-label="播放生日歌">
+        <svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="ic-pause" viewBox="0 0 24 24">
+          <rect x="7" y="5" width="3.4" height="14" rx="1"/>
+          <rect x="13.6" y="5" width="3.4" height="14" rx="1"/>
+        </svg>
+      </button>
+
+      <div class="p-info">
+        <div class="p-title">Happy Birthday</div>
+        <div class="p-sub" id="pStatus">点击播放音乐</div>
+      </div>
+
+      <div class="vol">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 10v4h4l5 4V6L7 10H3z"/>
+          <path d="M16.5 12a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z" opacity=".85"/>
+          <path d="M14 3v2a7 7 0 0 1 0 14v2a9 9 0 0 0 0-18z" opacity=".6"/>
+        </svg>
+        <input type="range" id="volRange" min="0" max="100" value="70" aria-label="音量">
+      </div>
+    </div>
+
+    <!-- 进度条 -->
+    <div class="progress-wrap">
+      <span class="time-label" id="timeCur">0:00</span>
+      <input type="range" id="progressBar" min="0" max="100" value="0" step="0.1" aria-label="播放进度">
+      <span class="time-label" id="timeTotal">0:00</span>
+    </div>
+  </div>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ================= 星空背景 ================= */
+  const starLayer = document.getElementById('stars');
+  const starFrag = document.createDocumentFragment();
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('i');
+    const r = Math.random();
+    let size = 0.8 + Math.random() * 2;
+    if (r > 0.8) { s.className = 'gold'; size = 2 + Math.random() * 3; }
+    else if (r > 0.6) { s.className = 'blue'; size = 1.5 + Math.random() * 2; }
+    s.style.cssText =
+      `left:${(Math.random() * 100).toFixed(2)}%;top:${(Math.random() * 100).toFixed(2)}%;` +
+      `width:${size.toFixed(2)}px;height:${size.toFixed(2)}px;` +
+      `animation-delay:${(Math.random() * 5).toFixed(2)}s;` +
+      `animation-duration:${(2 + Math.random() * 4).toFixed(2)}s`;
+    starFrag.appendChild(s);
+  }
+  starLayer.appendChild(starFrag);
+
+  /* ================= 彩带 ================= */
+  const COLORS = ['#ffd166', '#f5a3c7', '#9ad0ec', '#c9a7eb', '#ffe9b0', '#ff9e7d', '#fffdf2'];
+  function burst(n = 90) {
+    for (let i = 0; i < n; i++) {
+      const p = document.createElement('i');
+      const size = 5 + Math.random() * 7;
+      p.className = 'confetti';
+      p.style.cssText =
+        `left:${(Math.random() * 100).toFixed(2)}vw;width:${size.toFixed(1)}px;` +
+        `height:${(size * (0.6 + Math.random())).toFixed(2)}px;` +
+        `background:${COLORS[(Math.random() * COLORS.length) | 0]};` +
+        `border-radius:${Math.random() > 0.5 ? '50%' : '2px'};` +
+        `animation-duration:${(2.4 + Math.random() * 2.2).toFixed(2)}s;` +
+        `animation-delay:${(Math.random() * 0.7).toFixed(2)}s;` +
+        `--x:${(Math.random() * 220 - 110).toFixed(0)}px`;
+      p.addEventListener('animationend', () => p.remove(), { once: true });
+      document.body.appendChild(p);
+    }
+  }
+
+  /* ================= 吹蜡烛许愿 ================= */
+  const wishBtn = document.getElementById('wishBtn');
+  const hintEl = document.getElementById('hint');
+  const flames = document.querySelectorAll('.flame-group');
+  let wished = false;
+
+  wishBtn.addEventListener('click', () => {
+    wished = !wished;
+    flames.forEach(f => f.classList.toggle('out', wished));
+    wishBtn.setAttribute('aria-pressed', String(wished));
+    if (wished) {
+      burst(110);
+      wishBtn.textContent = '🎂 愿望已许下';
+      hintEl.textContent = '愿望会悄悄实现的 ✨';
+    } else {
+      wishBtn.textContent = '✨ 吹蜡烛许愿';
+      hintEl.textContent = '';
+    }
+  });
+
+  /* ================= 生日歌（Web Audio 合成，无需音频文件） ================= */
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  const playBtn = document.getElementById('playBtn');
+  const pStatus = document.getElementById('pStatus');
+  const volRange = document.getElementById('volRange');
+  const progressBar = document.getElementById('progressBar');
+  const timeCur = document.getElementById('timeCur');
+  const timeTotal = document.getElementById('timeTotal');
+
+  // C 大调音符频率
+  const NOTES = {
+    C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23,
+    G4: 392.00, A4: 440.00, Bb4: 466.16, C5: 523.25
+  };
+
+  // 经典《生日快乐》旋律 [音符, 拍数]
+  const MELODY = [
+    ['C4', 0.75], ['C4', 0.25], ['D4', 1], ['C4', 1], ['F4', 1], ['E4', 2],
+    ['C4', 0.75], ['C4', 0.25], ['D4', 1], ['C4', 1], ['G4', 1], ['F4', 2],
+    ['C4', 0.75], ['C4', 0.25], ['C5', 1], ['A4', 1], ['F4', 1], ['E4', 1], ['D4', 2],
+    ['Bb4', 0.75], ['Bb4', 0.25], ['A4', 1], ['F4', 1], ['G4', 1], ['F4', 2]
+  ];
+
+  const BEAT = 60 / 100;              // 100 BPM，共 25 拍 = 15 秒
+  const timeline = [];
+  let total = 0;
+  for (const [note, beats] of MELODY) {
+    timeline.push({ freq: NOTES[note], startTime: total, endTime: total + beats * BEAT });
+    total += beats * BEAT;
+  }
+
+  function fmt(sec) {
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return m + ':' + String(s).padStart(2, '0');
+  }
+
+  progressBar.max = total.toFixed(1);
+  timeTotal.textContent = fmt(total);
+  volRange.style.setProperty('--v', volRange.value + '%');
+
+  let audioCtx = null, master = null;
+  let isPlaying = false, isScrubbing = false;
+  let rafId = 0, startAt = 0, playFrom = 0;
+  let liveOsc = [];
+
+  function setStatus(t) { pStatus.textContent = t; }
+
+  function initAudio() {
+    if (!AudioCtx) return false;
+    if (!audioCtx) {
+      audioCtx = new AudioCtx();
+      master = audioCtx.createGain();
+      master.gain.value = volRange.value / 100;
+      master.connect(audioCtx.destination);
+    }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return true;
+  }
+
+  function killOsc() {
+    liveOsc.forEach(o => { try { o.stop(); } catch (_) {} });
+    liveOsc = [];
+  }
+
+  // 从 from 秒处调度整条旋律（基于音频时钟精确定位）
+  function schedule(from) {
+    killOsc();
+    if (!initAudio()) return;
+    playFrom = from;
+    startAt = audioCtx.currentTime + 0.08;
+
+    for (const t of timeline) {
+      if (t.endTime <= from) continue;
+
+      const when = startAt + Math.max(0, t.startTime - from);   // 音符起音时刻
+      const noteEnd = startAt + t.endTime - from;               // 音符结束时刻
+      const dur = noteEnd - when;
+      const atk = Math.min(0.03, dur * 0.3);                    // 起音
+      const rel = Math.min(0.12, dur * 0.4);                    // 释音
+
+      const osc = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.value = t.freq;
+
+      g.gain.setValueAtTime(0, when);
+      g.gain.linearRampToValueAtTime(1, when + atk);
+      g.gain.linearRampToValueAtTime(0.85, noteEnd - rel);
+      g.gain.linearRampToValueAtTime(0, noteEnd);
+
+      osc.connect(g).connect(master);
+      osc.start(when);
+      osc.stop(noteEnd);
+      liveOsc.push(osc);
+    }
+  }
+
+  function paintUI(time) {
+    timeCur.textContent = fmt(time);
+    progressBar.value = time.toFixed(1);
+    progressBar.style.setProperty('--v', (time / total * 100).toFixed(2) + '%');
+  }
+
+  function tick() {
+    if (!isPlaying) return;
+    const cur = playFrom + (audioCtx.currentTime - startAt);
+    if (cur >= total) {
+      paintUI(0);
+      pause('播放结束 · 点击可重新播放');
+      return;
+    }
+    if (!isScrubbing) paintUI(cur);
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function play() {
+    if (isPlaying || !initAudio()) return;
+    let from = parseFloat(progressBar.value);
+    if (from >= total - 0.05) from = 0;
+    isPlaying = true;
+    playBtn.classList.add('playing');
+    playBtn.setAttribute('aria-label', '暂停音乐');
+    setStatus('正在播放 · 生日快乐');
+    schedule(from);
+    paintUI(from);
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function pause(text) {
+    if (!isPlaying) return;
+    isPlaying = false;
+    playBtn.classList.remove('playing');
+    playBtn.setAttribute('aria-label', '播放生日歌');
+    setStatus(text || '已暂停');
+    killOsc();
+    cancelAnimationFrame(rafId);
+    rafId = 0;
+  }
+
+  playBtn.addEventListener('click', () => (isPlaying ? pause() : play()));
+
+  /* ---- 进度条：拖动中只刷界面，松手才定位音频 ---- */
+  function commitSeek() {
+    isScrubbing = false;
+    const t = parseFloat(progressBar.value);
+    paintUI(t);
+    if (isPlaying) schedule(t);
+  }
+  progressBar.addEventListener('pointerdown', () => { isScrubbing = true; });
+  progressBar.addEventListener('input', () => {
+    if (isScrubbing) paintUI(parseFloat(progressBar.value));
+  });
+  progressBar.addEventListener('change', commitSeek);
+  window.addEventListener('pointerup', () => { if (isScrubbing) commitSeek(); });
+
+  /* ---- 音量 ---- */
+  volRange.addEventListener('input', () => {
+    const v = Number(volRange.value);
+    volRange.style.setProperty('--v', v + '%');
+    if (audioCtx && master) {
+      master.gain.cancelScheduledValues(audioCtx.currentTime);
+      master.gain.setValueAtTime(v / 100, audioCtx.currentTime);
+    }
+    setStatus(v === 0 ? '已静音'
+      : isPlaying ? '正在播放 · 生日快乐'
+      : audioCtx ? '已暂停'
+      : '点击播放音乐');
+  });
+
+  /* ================= 入场彩蛋 ================= */
+  setTimeout(() => burst(28), 700);
+})();
+</script>
+
+</body>
+</html>
